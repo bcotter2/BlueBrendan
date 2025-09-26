@@ -1,1 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Brendan Cotter — Personal Profile</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <h1>Brendan Cotter</h1>
+      <p class="tagline">Student • Athlete • Outdoor Enthusiast</p>
+    </div>
+    <div class="profile-wrap">
+      <img src="profile.jpg" alt="Brendan Cotter profile picture" class="profile-photo">
+    </div>
+  </header>
+
+  <main class="content">
+    <section class="intro card">
+      <h2>About Me</h2>
+      <p>Hi — I'm <strong>Brendan Cotter</strong>. I like sports, the outdoors. Whether it’s playing baseball or football with my team, skiing in the winter, or mountain biking,  Sports and outdoor adventures keep me motivated, teach me teamwork, and give me a way to challenge both my body and mind.</p>
+      <p>Outside of athletics, I’m always interested in learning new skills and meeting people who share the same energy and excitement for life. My goal is to keep improving, whether that’s on the field, on the slopes, or in everyday challenges.</p>
+    </section>
+
+    <section class="contact card">
+      <h2>Contact</h2>
+      <ul>
+        <li>Email: <a href="mailto:you@example.com">you@example.com</a></li>
+        <li>GitHub: <a href="https://github.com/yourusername" target="_blank" rel="noopener">github.com/yourusername</a></li>
+        <li>Location: Your City, Country</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> Brendan Cotter. Built with ❤️.</p>
+  </footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
 
