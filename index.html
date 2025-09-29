@@ -1,40 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Brendan Cotter Profile & Plinko Game</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brendan's Plinko Game</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>Brendan Cotter</h1>
-    <p>Welcome to my profile!</p>
-  </header>
+  <h1>Brendan's Plinko Game</h1>
 
-  <section id="profile">
-    <h2>About Me</h2>
-    <p>Hi! This is my personal profile website. Below is a fun Plinko game!</p>
-  </section>
-
-  <section id="game">
-    <h2>Plinko Game</h2>
+  <div id="game-container">
     <p>Balance: $<span id="balance">1000</span></p>
-    
     <div>
-      <label>Select Bet Amount:</label>
+      <label>Bet Amount:</label>
+      <button onclick="setBet(5)">5</button>
       <button onclick="setBet(10)">10</button>
+      <button onclick="setBet(20)">20</button>
       <button onclick="setBet(50)">50</button>
       <button onclick="setBet(100)">100</button>
-      <button onclick="setBet(500)">500</button>
+      <button onclick="setBet(1000)">1000</button>
     </div>
-
-    <p>Current Bet: $<span id="currentBet">10</span></p>
-
-    <canvas id="plinkoCanvas" width="400" height="500"></canvas>
+    <p>Current Bet: $<span id="currentBet">5</span></p>
+    <canvas id="plinkoCanvas" width="600" height="700"></canvas>
     <button onclick="dropBall()">Drop Ball</button>
-  </section>
+  </div>
 
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
