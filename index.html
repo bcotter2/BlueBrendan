@@ -80,8 +80,8 @@
     let balls = [];
     let pegs = [];
 
-    const ballRadius = 8; // UPDATED
-    const pegRadius = 6;  // UPDATED
+    const ballRadius = 8;
+    const pegRadius = 6;
 
     // Build triangular peg layout
     const pegSpacingX = 50;
@@ -92,6 +92,14 @@
         let y = 80 + row * pegSpacingY;
         pegs.push({ x, y });
       }
+    }
+
+    // Extra row above slots with one extra peg at each end
+    const lastRowY = 80 + 10 * pegSpacingY;
+    const lastRowCols = slots.length + 1; // extra peg at ends
+    for (let col = 0; col < lastRowCols; col++) {
+      let x = (canvas.width - pegSpacingX * (lastRowCols - 1)) / 2 + col * pegSpacingX;
+      pegs.push({ x, y: lastRowY });
     }
 
     function setBet(amount) {
@@ -116,7 +124,7 @@
       ctx.fillStyle = "white";
       pegs.forEach(peg => {
         ctx.beginPath();
-        ctx.arc(peg.x, peg.y, pegRadius, 0, Math.PI * 2); // UPDATED
+        ctx.arc(peg.x, peg.y, pegRadius, 0, Math.PI * 2);
         ctx.fill();
       });
 
@@ -137,7 +145,17 @@
         ball.y += ball.vy;
         ball.vy += 0.2; // gravity
 
-        // Collision with pegs — UPDATED
+        // Bounce off edges
+        if (ball.x - ballRadius < 0) {
+          ball.x = ballRadius;
+          ball.vx *= -0.8;
+        }
+        if (ball.x + ballRadius > canvas.width) {
+          ball.x = canvas.width - ballRadius;
+          ball.vx *= -0.8;
+        }
+
+        // Collision with pegs
         pegs.forEach(peg => {
           let dx = ball.x - peg.x;
           let dy = ball.y - peg.y;
@@ -164,7 +182,7 @@
 
         // Draw ball
         ctx.beginPath();
-        ctx.arc(ball.x, ball.y, ballRadius, 0, Math.PI * 2); // UPDATED
+        ctx.arc(ball.x, ball.y, ballRadius, 0, Math.PI * 2);
         ctx.fillStyle = "orange";
         ctx.fill();
 
