@@ -38,6 +38,14 @@
     button:hover {
       background: #0c8b88;
     }
+    input[type="number"] {
+      width: 80px;
+      padding: 5px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: none;
+      margin-left: 5px;
+    }
     .balance {
       margin-top: 10px;
       font-size: 18px;
@@ -55,6 +63,7 @@
     <button onclick="setBet(10)">Bet 10</button>
     <button onclick="setBet(50)">Bet 50</button>
     <button onclick="setBet(100)">Bet 100</button>
+    <input type="number" id="customBet" placeholder="Custom" min="1">
     <button onclick="dropBall()">Drop Ball</button>
   </div>
 
@@ -83,20 +92,28 @@
     const ballRadius = 8;
     const pegRadius = 6;
 
-    // Build triangular peg layout
     const pegSpacingX = 50;
     const pegSpacingY = 50;
+
+    // Top starting pegs — 3 pegs
+    const topY = 30;
+    const topXStart = canvas.width / 2 - pegSpacingX;
+    for (let i = 0; i < 3; i++) {
+      pegs.push({ x: topXStart + i * pegSpacingX, y: topY });
+    }
+
+    // Build triangular peg layout
     for (let row = 0; row < 10; row++) {
       for (let col = 0; col <= row; col++) {
         let x = canvas.width / 2 - row * (pegSpacingX / 2) + col * pegSpacingX;
-        let y = 80 + row * pegSpacingY;
+        let y = topY + 50 + row * pegSpacingY;
         pegs.push({ x, y });
       }
     }
 
     // Extra row above slots with one extra peg at each end
-    const lastRowY = 80 + 10 * pegSpacingY;
-    const lastRowCols = slots.length + 1; // extra peg at ends
+    const lastRowY = topY + 50 + 10 * pegSpacingY;
+    const lastRowCols = slots.length + 1;
     for (let col = 0; col < lastRowCols; col++) {
       let x = (canvas.width - pegSpacingX * (lastRowCols - 1)) / 2 + col * pegSpacingX;
       pegs.push({ x, y: lastRowY });
@@ -105,104 +122,4 @@
     function setBet(amount) {
       betAmount = amount;
       document.getElementById("bet").textContent = betAmount;
-    }
-
-    function dropBall() {
-      if (balance < betAmount) {
-        alert("Not enough balance!");
-        return;
-      }
-      balance -= betAmount;
-      document.getElementById("balance").textContent = balance;
-      balls.push({ x: canvas.width / 2, y: 10, vx: 0, vy: 2 });
-    }
-
-    function update() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      // Draw pegs
-      ctx.fillStyle = "white";
-      pegs.forEach(peg => {
-        ctx.beginPath();
-        ctx.arc(peg.x, peg.y, pegRadius, 0, Math.PI * 2);
-        ctx.fill();
-      });
-
-      // Draw slots
-      ctx.fillStyle = "#444";
-      for (let i = 0; i < slots.length; i++) {
-        ctx.fillRect(i * slotWidth, canvas.height - 60, slotWidth - 2, 60);
-        ctx.fillStyle = "white";
-        ctx.font = "14px Arial";
-        ctx.fillText(slots[i] + "x", i * slotWidth + slotWidth/4, canvas.height - 20);
-        ctx.fillStyle = "#444";
-      }
-
-      // Update balls
-      for (let i = 0; i < balls.length; i++) {
-        let ball = balls[i];
-        ball.x += ball.vx;
-        ball.y += ball.vy;
-        ball.vy += 0.2; // gravity
-
-        // Bounce off edges
-        if (ball.x - ballRadius < 0) {
-          ball.x = ballRadius;
-          ball.vx *= -0.8;
-        }
-        if (ball.x + ballRadius > canvas.width) {
-          ball.x = canvas.width - ballRadius;
-          ball.vx *= -0.8;
-        }
-
-        // Collision with pegs
-        pegs.forEach(peg => {
-          let dx = ball.x - peg.x;
-          let dy = ball.y - peg.y;
-          let dist = Math.hypot(dx, dy);
-          let minDist = ballRadius + pegRadius;
-
-          if (dist > 0 && dist < minDist) {
-            let nx = dx / dist;
-            let ny = dy / dist;
-            let overlap = minDist - dist;
-
-            ball.x += nx * overlap;
-            ball.y += ny * overlap;
-
-            let vDotN = ball.vx * nx + ball.vy * ny;
-            ball.vx = ball.vx - 2 * vDotN * nx;
-            ball.vy = ball.vy - 2 * vDotN * ny;
-
-            ball.vx *= 0.9;
-            ball.vy *= 0.9;
-            ball.vx += (Math.random() - 0.5) * 1.2;
-          }
-        });
-
-        // Draw ball
-        ctx.beginPath();
-        ctx.arc(ball.x, ball.y, ballRadius, 0, Math.PI * 2);
-        ctx.fillStyle = "orange";
-        ctx.fill();
-
-        // Check bottom (slot)
-        if (ball.y >= canvas.height - 70) {
-          let slotIndex = Math.floor(ball.x / slotWidth);
-          if (slotIndex >= 0 && slotIndex < slots.length) {
-            let winnings = betAmount * slots[slotIndex];
-            balance += winnings;
-            document.getElementById("balance").textContent = balance;
-          }
-          balls.splice(i, 1);
-          i--;
-        }
-      }
-
-      requestAnimationFrame(update);
-    }
-
-    update();
-  </script>
-</body>
-</html>
+      d
