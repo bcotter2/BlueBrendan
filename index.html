@@ -1,46 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>LED Sellers</title>
+  <meta charset="UTF-8">
+  <title>LED Sellers | Glow Your Space</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<header class="navbar">
-  <h1 class="logo">LED Sellers</h1>
-  <nav>
+<!-- Announcement bar -->
+<div class="announcement">
+  ✨ Free Shipping on Orders Over $50 ✨
+</div>
+
+<!-- Header -->
+<header class="header">
+  <div class="logo">LED Sellers</div>
+  <nav class="nav">
     <a href="index.html">Home</a>
-    <a href="products.html">Products</a>
+    <a href="products.html">Shop</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
   </nav>
 </header>
 
+<!-- Hero -->
 <section class="hero">
-  <h2>Glow Your Space</h2>
-  <p>Modern LED lighting for every vibe</p>
-  <a href="products.html" class="btn">Shop Now</a>
+  <div class="hero-text">
+    <h1>Light Up Your World</h1>
+    <p>Premium RGB & Neon LED lights for rooms, desks, and vibes.</p>
+    <a href="products.html" class="hero-btn">Shop LEDs</a>
+  </div>
 </section>
 
-<section class="products-preview">
-  <h3>Featured Products</h3>
+<!-- Trust badges -->
+<section class="badges">
+  <div>⚡ Fast Shipping</div>
+  <div>💡 Energy Efficient</div>
+  <div>🔒 Secure Checkout</div>
+  <div>⭐ Top Rated</div>
+</section>
+
+<!-- Featured products -->
+<section class="featured">
+  <h2>Featured Products</h2>
+
   <div class="product-grid">
     <div class="product-card">
-      <img src="images/placeholder.png" alt="LED Light">
-      <h4>RGB LED Strip</h4>
-      <p>$19.99</p>
+      <span class="tag">BEST SELLER</span>
+      <img src="images/product1.png" alt="LED Strip">
+      <h3>RGB LED Strip Lights</h3>
+      <p class="price">$19.99</p>
+      <button>Add to Cart</button>
     </div>
+
     <div class="product-card">
-      <img src="images/placeholder.png" alt="LED Lamp">
-      <h4>Glow Lamp</h4>
-      <p>$29.99</p>
+      <span class="tag new">NEW</span>
+      <img src="images/product2.png" alt="Neon Light">
+      <h3>Neon Wall Light</h3>
+      <p class="price">$34.99</p>
+      <button>Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+      <img src="images/product1.png" alt="Desk Lamp">
+      <h3>Glow Desk Lamp</h3>
+      <p class="price">$29.99</p>
+      <button>Add to Cart</button>
     </div>
   </div>
 </section>
 
+<!-- Promo section -->
+<section class="promo">
+  <h2>Create the Perfect Vibe</h2>
+  <p>Gaming rooms, bedrooms, studios — LEDs change everything.</p>
+  <a href="products.html" class="hero-btn">Browse Collection</a>
+</section>
+
+<!-- Footer -->
 <footer class="footer">
-  <p>© 2026 LED Sellers</p>
+  <div class="footer-cols">
+    <div>
+      <h4>Shop</h4>
+      <a href="#">All Products</a>
+      <a href="#">Best Sellers</a>
+      <a href="#">New Arrivals</a>
+    </div>
+    <div>
+      <h4>Support</h4>
+      <a href="#">Contact</a>
+      <a href="#">Shipping</a>
+      <a href="#">Returns</a>
+    </div>
+    <div>
+      <h4>LED Sellers</h4>
+      <p>Modern lighting for modern spaces.</p>
+    </div>
+  </div>
+  <p class="copyright">© 2026 LED Sellers</p>
 </footer>
 
+<script src="js/script.js"></script>
 </body>
 </html>
